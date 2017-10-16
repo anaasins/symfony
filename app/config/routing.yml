@@ -1,0 +1,12 @@
+clase:
+    resource: "@ClaseBundle/Resources/config/routing.yml"
+    prefix:   /clase
+
+ana:
+    resource: "@AnaBundle/Controller/"
+    type:     annotation
+    prefix:   /ana
+
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation

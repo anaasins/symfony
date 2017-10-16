@@ -1,0 +1,7 @@
+clase_homepage:
+    path:     /
+    defaults: { _controller: ClaseBundle:Default:index }
+
+sede_homepage:
+    path:     /sede/{ciudad}
+    defaults: { _controller: ClaseBundle:Default:sede, ciudad:VLC }
