@@ -4,6 +4,7 @@ namespace AnaBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use AnaBundle\Entity\alumnos;
 
 class DefaultController extends Controller
 {
@@ -29,5 +30,18 @@ class DefaultController extends Controller
     public function sedeAction($ciudad="VLC")
     {
         return $this->render('AnaBundle:Default:sede.html.twig', array('c'=>$ciudad));
+    }
+    /**
+     * @Route("/list", name="list")
+     */
+    public function listAction()
+    {
+      //devolver la clase para interactuar con la BBDD
+        $repository = $this->getDoctrine()->getRepository(alumnos::class);
+      //sacar lo que queramos de la base de datos
+        $alumnos = $repository->findAll();
+
+
+        return $this->render('AnaBundle:Default:list.html.twig', array('alumnos'=>$alumnos));
     }
 }
