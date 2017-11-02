@@ -1,6 +1,6 @@
 Listado de Alumnos
 <ul>
     {% for alumno in alumnos %}
-      <li>{{ alumno.nombre }} {{alumno.apellidos}}</li>
+      <li>{{ alumno.nombre }} {{alumno.apellidos}} {{alumno.edad}} {{alumno.fechaCreacion|date('Y-m-d')}}</li>
     {% endfor %}
 </ul>

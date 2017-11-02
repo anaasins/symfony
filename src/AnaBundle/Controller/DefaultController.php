@@ -44,4 +44,24 @@ class DefaultController extends Controller
 
         return $this->render('AnaBundle:Default:list.html.twig', array('alumnos'=>$alumnos));
     }
+
+    /**
+     * @Route("/insert/{nombre}/{apellidos}/{edad}", name="insert")
+     */
+    public function insertarAction($nombre, $apellidos='sin apellidos', $edad=20, $fecha='20-10-2017')
+    {
+      $em = $this->getDoctrine()->getManager();
+
+      $alumnos  = new alumnos();
+      $alumnos->setNombre($nombre);
+      $alumnos->setApellidos($apellidos);
+      $alumnos->setEdad($edad);
+      $alumnos->setFechaCreacion(new \DateTime($fecha));
+
+      $em->persist($alumnos);
+
+      $em->flush();
+
+      return $this->redirectToRoute('list');
+    }
 }
