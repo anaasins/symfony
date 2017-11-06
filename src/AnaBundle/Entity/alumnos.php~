@@ -160,28 +160,4 @@ class alumnos
     {
         return $this->fechaCreacion;
     }
-
-    /**
-     * Set titulacion
-     *
-     * @param \AnaBundle\Entity\Titulacion $titulacion
-     *
-     * @return alumnos
-     */
-    public function setTitulacion(\AnaBundle\Entity\Titulacion $titulacion = null)
-    {
-        $this->titulacion = $titulacion;
-
-        return $this;
-    }
-
-    /**
-     * Get titulacion
-     *
-     * @return \AnaBundle\Entity\Titulacion
-     */
-    public function getTitulacion()
-    {
-        return $this->titulacion;
-    }
 }

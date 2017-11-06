@@ -5,6 +5,8 @@ namespace AnaBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AnaBundle\Entity\alumnos;
+use AnaBundle\Form\alumnosType;
+use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller
 {
@@ -64,4 +66,25 @@ class DefaultController extends Controller
 
       return $this->redirectToRoute('list');
     }
+
+    /**
+     * @Route("/nuevoAlumno", name="nuevoAlumno")
+     */
+     public function nuevoAlumnoAction(Request $request)
+     {
+       $alumnos = new alumnos();
+       $form = $this->createForm(alumnosType::class, $alumnos);
+
+       $form->handleRequest($request);
+       if ($form->isSubmitted() && $form->isValid()) {
+        $alumno = $form->getData();
+         $em = $this->getDoctrine()->getManager();
+         $em->persist($alumno);
+         $em->flush();
+
+        return $this->redirectToRoute('list');
+    }
+
+       return $this->render('AnaBundle:Default:nuevoAlumno.html.twig', array('form'=>$form->createView()));
+     }
 }
